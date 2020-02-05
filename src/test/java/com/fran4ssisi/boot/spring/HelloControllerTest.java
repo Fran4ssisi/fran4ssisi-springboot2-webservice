@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.hamcrest.Matchers.is;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest //JPA기능이 작동하지 않는
 public class HelloControllerTest {
 
     @Autowired
