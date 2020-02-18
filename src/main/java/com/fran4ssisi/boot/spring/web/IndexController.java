@@ -1,5 +1,6 @@
 package com.fran4ssisi.boot.spring.web;
 
+import com.fran4ssisi.boot.spring.config.auth.LoginUser;
 import com.fran4ssisi.boot.spring.config.auth.dto.SessionUser;
 import com.fran4ssisi.boot.spring.domain.user.User;
 import com.fran4ssisi.boot.spring.service.PostsService;
@@ -20,10 +21,9 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
         //앞서 작성된 CustomOauth2UserService에서 로그인 성공 시 세션에 SessionUser를 저장하도록 구성
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null) {
             model.addAttribute("userName", user.getName());
         }
